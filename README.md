@@ -2,8 +2,7 @@
 
 ## 🚀 Live Demo
 
-Experience PromptCrafter live: [https://prompt-crafter-challenge.vercel.app/}
-
+Experience PromptCrafter live: https://prompt-crafter-challenge.vercel.app/
 
 ## ✨ Challenge & Vision
 
@@ -13,7 +12,7 @@ While Lovable.dev excels at generating full-stack applications from simple promp
 
 ## 💡 How PromptCrafter Pushes AI Limits (using Google's Gemini Model)
 
-PromptCrafter's core intelligence is powered by **Google's Gemini 2.5 Flash model** (or the latest available top Google model at the time of development). This enables:
+PromptCrafter's core intelligence is powered by **Google's Gemini 1.5 Flash model** (or the latest available top Google model at the time of development). This enables:
 
 1.  **Hyper-Personalization:** The AI adapts its lesson content, examples, and tone based on the user's declared knowledge level, preferred learning style, and current goal/mood. This ensures a truly unique and relevant learning path.
 2.  **Generative Content:** The platform dynamically generates:
@@ -29,7 +28,7 @@ This approach demonstrates how AI can go beyond simple content generation to bec
 
 * **Frontend:** React with Vite (for fast development and modern tooling)
 * **Backend:** Node.js with Express.js (for a lightweight and efficient API server)
-* **AI Model:** Google Gemini 2.5 Flash (via `@google/generative-ai` SDK)
+* **AI Model:** Google Gemini 1.5 Flash (via `@google/generative-ai` SDK)
 * **Styling:** Basic CSS (enhanced for clarity and readability of AI output)
 * **Markdown Rendering:** `react-markdown` (for beautiful display of AI-generated content)
 * **Deployment:**
@@ -47,7 +46,6 @@ If you wish to run the project locally or inspect the code:
     git clone [https://github.com/celtechstarter/PromptCrafter-Challenge.git](https://github.com/celtechstarter/PromptCrafter-Challenge.git)
     cd PromptCrafter-Challenge
     ```
-    
 
 2.  **Set up Backend:**
     * Navigate to the backend directory: `cd promptcrafter-backend`
