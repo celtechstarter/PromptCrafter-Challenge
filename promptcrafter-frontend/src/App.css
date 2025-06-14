@@ -3,7 +3,7 @@
 /* Define a color palette inspired by modern, techy designs, similar to lovable.dev's clean aesthetic */
 :root {
   --bg-gradient-start: #1a1a2e; /* Dark blue-purple start */
-  --bg-gradient-end: #0f0f1d; /* Even darker end */
+  --bg-gradient-end: #0f0f1d;   /* Even darker end */
   --card-bg-color: rgba(22, 33, 62, 0.8); /* Semi-transparent dark blue */
   --text-color-light: #e0e0e0; /* Light gray for main text */
   --text-color-medium: #b0b0b0; /* Dimmer text for secondary info */
@@ -18,6 +18,8 @@
   --code-bg: rgba(45, 45, 60, 0.6); /* Background for code blocks */
   --code-text: #f8f8f2; /* Text color for code */
   --inline-code-bg: rgba(70, 70, 90, 0.6); /* Background for inline code */
+  --github-color: #ffffff; /* White for GitHub icon and text */
+  --github-hover-color: #92b8ff; /* Lighter on hover */
 }
 
 body {
@@ -29,13 +31,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
   color: var(--text-color-light);
+
+  /* Updated for centering and better fit */
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  min-height: 100vh;
-  padding: 30px;
+  justify-content: center; /* Horizontally center content */
+  align-items: center;    /* Vertically center content */
+  min-height: 100vh;      /* Ensure body takes full viewport height */
+  padding: 20px;          /* Slightly less overall padding */
   box-sizing: border-box;
-  overflow-y: auto; /* Allow scrolling for longer content */
+  overflow-y: auto;       /* Allow vertical scrolling if content overflows */
 }
 
 /* Optional: Import Google Font 'Inter' for a modern look if desired.
@@ -45,18 +49,21 @@ body {
 .App {
   text-align: center;
   width: 100%;
-  max-width: 950px; /* Wider for more space */
+  max-width: 950px;
   background-color: var(--card-bg-color);
-  backdrop-filter: blur(10px); /* Glassmorphism effect */
+  backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1); /* Lighter border for glassmorphism */
-  border-radius: 20px; /* More rounded corners */
-  box-shadow: 0 15px 40px var(--shadow-color); /* Deeper shadow */
-  padding: 50px; /* More padding */
-  margin-top: 60px;
-  margin-bottom: 60px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  box-shadow: 0 15px 40px var(--shadow-color);
+  padding: 50px;
+
+  /* Removed fixed margins and let flexbox handle centering */
+  margin: 20px auto; /* Small top/bottom margin, horizontal auto for centering */
+
   box-sizing: border-box;
-  position: relative; /* For potential future absolute positioning */
+  position: relative;
+  min-height: fit-content; /* Ensure it wraps its content */
 }
 
 .App-header {
@@ -65,10 +72,10 @@ body {
 
 .App-header h1 {
   color: var(--primary-accent);
-  font-size: 3.5em; /* Even larger title */
+  font-size: 3.5em;
   margin-bottom: 15px;
-  text-shadow: 0 0 15px rgba(106, 106, 255, 0.6); /* Glowing effect for title */
-  letter-spacing: -0.03em; /* Tighten letter spacing */
+  text-shadow: 0 0 15px rgba(106, 106, 255, 0.6);
+  letter-spacing: -0.03em;
 }
 
 .App-header p {
@@ -82,19 +89,58 @@ body {
 /* Style for the heart icon */
 .heart-icon {
   display: inline-block;
-  font-size: 1.2em; /* Adjust size as needed */
-  margin-right: 0.2em; /* Space between icon and text */
-  /* Gradient similar to lovable.dev */
+  font-size: 1.2em;
+  margin-right: 0.2em;
   background: linear-gradient(to right, #ff69b4, #c779d0, #6a5acd);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
+/* GitHub link styling */
+.github-link-container {
+  margin-top: 25px;
+  margin-bottom: 40px;
+}
+
+.github-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background-color: var(--border-color);
+  color: var(--github-color);
+  padding: 12px 25px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 1.1em;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.github-link:hover {
+  background-color: #555;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+  color: var(--github-hover-color);
+}
+
+.github-icon {
+  fill: var(--github-color);
+  width: 24px;
+  height: 24px;
+  transition: fill 0.3s ease;
+}
+
+.github-link:hover .github-icon {
+  fill: var(--github-hover-color);
+}
+
+
 .preferences-section,
 .lesson-output,
 .feedback-section {
-  background-color: rgba(255, 255, 255, 0.05); /* Subtle transparency for sections */
-  border-radius: 15px; /* More rounded */
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
   padding: 35px;
   margin-top: 35px;
   box-shadow: 0 5px 25px rgba(0, 0, 0, 0.4);
@@ -127,9 +173,9 @@ body {
 .input-group select {
   width: 100%;
   padding: 15px 20px;
-  border-radius: 10px; /* More rounded input */
+  border-radius: 10px;
   border: 1px solid var(--border-color);
-  background-color: rgba(45, 45, 60, 0.8); /* Darker, slightly transparent input */
+  background-color: rgba(45, 45, 60, 0.8);
   color: var(--text-color-light);
   font-size: 1.1em;
   appearance: none;
@@ -144,8 +190,8 @@ body {
 .input-group select:focus {
   outline: none;
   border-color: var(--primary-accent);
-  box-shadow: 0 0 0 5px rgba(106, 106, 255, 0.3); /* Stronger glow */
-  background-color: rgba(45, 45, 60, 1); /* Solid on focus */
+  box-shadow: 0 0 0 5px rgba(106, 106, 255, 0.3);
+  background-color: rgba(45, 45, 60, 1);
 }
 
 button {
