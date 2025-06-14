@@ -1,8 +1,8 @@
 // promptcrafter-frontend/src/App.jsx
 
 import React, { useState } from 'react';
-import './App.css'; // Make sure this CSS file exists or adjust the path
-import ReactMarkdown from 'react-markdown'; // Import ReactMarkdown
+import './App.css';
+import ReactMarkdown from 'react-markdown';
 
 function App() {
   const [userKnowledge, setUserKnowledge] = useState('');
@@ -13,11 +13,9 @@ function App() {
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
 
-  // Backend URL - THIS IS YOUR LIVE RENDER.COM BACKEND URL!
-  const BACKEND_URL = 'https://promptcrafter-backend-api.onrender.com'; 
+  const BACKEND_URL = 'https://promptcrafter-backend-api.onrender.com';
 
   const generateLesson = async () => {
-    // Basic validation
     if (!userKnowledge || !learningStyle || !goal) {
       setMessage('Please fill in all preferences before generating a lesson.');
       return;
@@ -25,7 +23,7 @@ function App() {
 
     setLoading(true);
     setMessage('Generating your personalized lesson...');
-    setLessonContent(''); // Clear previous lesson content
+    setLessonContent('');
 
     try {
       const response = await fetch(`${BACKEND_URL}/api/generate-lesson`, {
@@ -33,7 +31,6 @@ function App() {
         headers: {
           'Content-Type': 'application/json',
         },
-        // Send user preferences and feedback to the backend
         body: JSON.stringify({ userKnowledge, learningStyle, goal, previousFeedback }),
       });
 
@@ -41,8 +38,8 @@ function App() {
 
       if (response.ok) {
         setMessage('Lesson generated successfully!');
-        setLessonContent(data.lessonContent); // Display the AI-generated lesson
-        setPreviousFeedback(''); // Clear feedback after successful generation for next iteration
+        setLessonContent(data.lessonContent);
+        setPreviousFeedback('');
       } else {
         setMessage(`Error: ${data.error || 'Failed to generate lesson.'}`);
         console.error('Backend error:', data);
@@ -55,26 +52,26 @@ function App() {
     }
   };
 
-  // Function to submit feedback for the next iteration
   const submitFeedback = async (feedbackType) => {
     const feedbackText = feedbackType === 'helpful' ? 'The lesson was helpful and clear.' : 'I need more explanation or different examples.';
-    setPreviousFeedback(feedbackText); // Store feedback for the next generation
+    setPreviousFeedback(feedbackText);
     setMessage('Thanks for your feedback! Generating new content...');
-    // Automatically re-generate with feedback
-    await generateLesson(); 
+    await generateLesson();
   };
-
 
   return (
     <div className="App">
       <header className="App-header">
-        {/* Added a creative icon (💡) to the title */}
-        <h1>💡 PromptCrafter!</h1>
+        {/* Updated to use a heart symbol with a gradient */}
+        <h1 className="app-title">
+          <span className="heart-icon">❤️</span> PromptCrafter!
+        </h1>
         <p>Your personalized coach for Lovable.dev prompts.</p>
 
-        {!lessonContent && ( // Show preferences only if no lesson is displayed yet
+        {!lessonContent && (
           <div className="preferences-section">
             <h2>Tell us about yourself:</h2>
+            {/* ... (rest of your preferences form) ... */}
             <div className="input-group">
               <label htmlFor="knowledge">Your Lovable.dev Knowledge Level:</label>
               <select id="knowledge" value={userKnowledge} onChange={(e) => setUserKnowledge(e.target.value)}>
@@ -114,11 +111,11 @@ function App() {
 
         {message && <p className="status-message">{message}</p>}
 
-        {lessonContent && ( // Display lesson content if available
+        {lessonContent && (
           <div className="lesson-output">
             <h2>Your Personalized Lesson:</h2>
-            <div className="markdown-content"> {/* You can add styling to this div */}
-              <ReactMarkdown>{lessonContent}</ReactMarkdown> {/* Use ReactMarkdown here */}
+            <div className="markdown-content">
+              <ReactMarkdown>{lessonContent}</ReactMarkdown>
             </div>
 
             <div className="feedback-section">
