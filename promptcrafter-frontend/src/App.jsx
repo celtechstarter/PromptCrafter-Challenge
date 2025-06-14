@@ -13,7 +13,7 @@ function App() {
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
 
-  // Backend URL - THIS IS NOW YOUR LIVE RENDER.COM BACKEND URL!
+  // Backend URL - THIS IS YOUR LIVE RENDER.COM BACKEND URL!
   const BACKEND_URL = 'https://promptcrafter-backend-api.onrender.com'; 
 
   const generateLesson = async () => {
@@ -28,7 +28,6 @@ function App() {
     setLessonContent(''); // Clear previous lesson content
 
     try {
-      // Use the deployed backend URL here
       const response = await fetch(`${BACKEND_URL}/api/generate-lesson`, {
         method: 'POST',
         headers: {
@@ -69,7 +68,8 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Welcome to PromptCrafter!</h1>
+        {/* Added a creative icon (💡) to the title */}
+        <h1>💡 PromptCrafter!</h1>
         <p>Your personalized coach for Lovable.dev prompts.</p>
 
         {!lessonContent && ( // Show preferences only if no lesson is displayed yet
