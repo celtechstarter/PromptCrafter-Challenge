@@ -13,6 +13,9 @@ function App() {
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
 
+  // Backend URL - THIS IS NOW YOUR LIVE RENDER.COM BACKEND URL!
+  const BACKEND_URL = 'https://promptcrafter-backend-api.onrender.com'; 
+
   const generateLesson = async () => {
     // Basic validation
     if (!userKnowledge || !learningStyle || !goal) {
@@ -25,7 +28,8 @@ function App() {
     setLessonContent(''); // Clear previous lesson content
 
     try {
-      const response = await fetch('http://localhost:3001/api/generate-lesson', {
+      // Use the deployed backend URL here
+      const response = await fetch(`${BACKEND_URL}/api/generate-lesson`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -60,6 +64,7 @@ function App() {
     // Automatically re-generate with feedback
     await generateLesson(); 
   };
+
 
   return (
     <div className="App">
@@ -115,7 +120,7 @@ function App() {
             <div className="markdown-content"> {/* You can add styling to this div */}
               <ReactMarkdown>{lessonContent}</ReactMarkdown> {/* Use ReactMarkdown here */}
             </div>
-            
+
             <div className="feedback-section">
               <h3>Was this helpful?</h3>
               <button onClick={() => submitFeedback('helpful')} disabled={loading}>Yes, it was helpful!</button>
