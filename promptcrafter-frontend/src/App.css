@@ -1,42 +1,277 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+/* promptcrafter-frontend/src/App.css */
+
+/* Define a color palette inspired by modern, techy designs, similar to lovable.dev's clean aesthetic */
+:root {
+  --bg-gradient-start: #1a1a2e; /* Dark blue-purple start */
+  --bg-gradient-end: #0f0f1d;   /* Even darker end */
+  --card-bg-color: rgba(22, 33, 62, 0.8); /* Semi-transparent dark blue */
+  --text-color-light: #e0e0e0; /* Light gray for main text */
+  --text-color-medium: #b0b0b0; /* Dimmer text for secondary info */
+  --primary-accent: #6a6aff; /* A vibrant blue-purple for main highlights */
+  --secondary-accent: #a0a0ff; /* Lighter blue-purple for subtle accents */
+  --button-bg: #4a4aed; /* Stronger blue for buttons */
+  --button-hover-bg: #5a5ae5; /* Slightly lighter on hover */
+  --feedback-button-bg: #28a745; /* Green for positive feedback */
+  --feedback-button-hover-bg: #218838; /* Darker green on hover */
+  --border-color: #3f3f6f; /* Subtle border color */
+  --shadow-color: rgba(0, 0, 0, 0.5);
+  --code-bg: rgba(45, 45, 60, 0.6); /* Background for code blocks */
+  --code-text: #f8f8f2; /* Text color for code */
+  --inline-code-bg: rgba(70, 70, 90, 0.6); /* Background for inline code */
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+  color: var(--text-color-light);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 30px;
+  box-sizing: border-box;
+  overflow-y: auto; /* Allow scrolling for longer content */
+}
+
+/* Optional: Import Google Font 'Inter' for a modern look if desired.
+   Add <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+   to your public/index.html (or public/index.html if using Vite, check the Vite docs for correct import location) */
+
+.App {
   text-align: center;
+  width: 100%;
+  max-width: 950px; /* Wider for more space */
+  background-color: var(--card-bg-color);
+  backdrop-filter: blur(10px); /* Glassmorphism effect */
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Lighter border for glassmorphism */
+  border-radius: 20px; /* More rounded corners */
+  box-shadow: 0 15px 40px var(--shadow-color); /* Deeper shadow */
+  padding: 50px; /* More padding */
+  margin-top: 60px;
+  margin-bottom: 60px;
+  box-sizing: border-box;
+  position: relative; /* For potential future absolute positioning */
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.App-header {
+  margin-bottom: 40px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.App-header h1 {
+  color: var(--primary-accent);
+  font-size: 3.5em; /* Even larger title */
+  margin-bottom: 15px;
+  text-shadow: 0 0 15px rgba(106, 106, 255, 0.6); /* Glowing effect for title */
+  letter-spacing: -0.03em; /* Tighten letter spacing */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.App-header p {
+  color: var(--text-color-medium);
+  font-size: 1.25em;
+  line-height: 1.6;
+  max-width: 700px;
+  margin: 0 auto;
 }
 
-.card {
-  padding: 2em;
+.preferences-section, .lesson-output, .feedback-section {
+  background-color: rgba(255, 255, 255, 0.05); /* Subtle transparency for sections */
+  border-radius: 15px; /* More rounded */
+  padding: 35px;
+  margin-top: 35px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--border-color);
 }
 
-.read-the-docs {
-  color: #888;
+.preferences-section h2, .lesson-output h2, .feedback-section h3 {
+  color: var(--secondary-accent);
+  margin-top: 0;
+  font-size: 2.2em;
+  margin-bottom: 30px;
+  font-weight: 700;
+}
+
+.input-group {
+  margin-bottom: 25px;
+  text-align: left;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 12px;
+  font-weight: 600;
+  color: var(--text-color-light);
+  font-size: 1.1em;
+}
+
+.input-group select {
+  width: 100%;
+  padding: 15px 20px;
+  border-radius: 10px; /* More rounded input */
+  border: 1px solid var(--border-color);
+  background-color: rgba(45, 45, 60, 0.8); /* Darker, slightly transparent input */
+  color: var(--text-color-light);
+  font-size: 1.1em;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e0e0e0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 20px center;
+  background-size: 22px;
+  cursor: pointer;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.input-group select:focus {
+  outline: none;
+  border-color: var(--primary-accent);
+  box-shadow: 0 0 0 5px rgba(106, 106, 255, 0.3); /* Stronger glow */
+  background-color: rgba(45, 45, 60, 1); /* Solid on focus */
+}
+
+button {
+  background: linear-gradient(45deg, var(--button-bg) 0%, var(--primary-accent) 100%); /* Gradient button */
+  color: white;
+  padding: 15px 35px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.3em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease; /* All for smoother transitions */
+  margin-top: 35px;
+  box-shadow: 0 6px 15px var(--shadow-color);
+  letter-spacing: 0.05em; /* Slightly more spaced letters */
+}
+
+button:hover:not(:disabled) {
+  background: linear-gradient(45deg, var(--primary-accent) 0%, var(--button-hover-bg) 100%);
+  transform: translateY(-5px) scale(1.02); /* More pronounced lift and slight scale */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+button:disabled {
+  background: #333;
+  cursor: not-allowed;
+  opacity: 0.6;
+  box-shadow: none;
+  transform: none;
+}
+
+.status-message {
+  margin-top: 30px;
+  font-style: italic;
+  color: var(--text-color-medium);
+  font-size: 1.15em;
+}
+
+.lesson-output {
+  text-align: left;
+  margin-top: 35px;
+  line-height: 1.8; /* Even better readability */
+  font-size: 1.05em; /* Slightly larger text */
+}
+
+.lesson-output .markdown-content {
+  padding: 25px;
+  background-color: var(--code-bg); /* Use code background for content box */
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.2); /* Inner shadow for depth */
+}
+
+/* Styling for Markdown elements generated by ReactMarkdown */
+.lesson-output .markdown-content h1,
+.lesson-output .markdown-content h2,
+.lesson-output .markdown-content h3,
+.lesson-output .markdown-content h4,
+.lesson-output .markdown-content h5,
+.lesson-output .markdown-content h6 {
+    color: var(--primary-accent);
+    margin-top: 2em;
+    margin-bottom: 0.9em;
+    font-weight: 700;
+    line-height: 1.4;
+    letter-spacing: -0.02em;
+}
+.lesson-output .markdown-content h1 { font-size: 2em; }
+.lesson-output .markdown-content h2 { font-size: 1.7em; }
+.lesson-output .markdown-content h3 { font-size: 1.5em; }
+
+.lesson-output .markdown-content p {
+    margin-bottom: 1.3em;
+}
+
+.lesson-output .markdown-content ul,
+.lesson-output .markdown-content ol {
+    margin-left: 30px; /* More indentation */
+    margin-bottom: 1.3em;
+    padding-left: 0;
+}
+
+.lesson-output .markdown-content li {
+    margin-bottom: 0.7em;
+}
+
+.lesson-output .markdown-content strong {
+    color: var(--text-color-light);
+    font-weight: bold;
+}
+
+.lesson-output .markdown-content code {
+    background-color: var(--inline-code-bg);
+    padding: 4px 7px;
+    border-radius: 6px;
+    font-family: 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 0.9em;
+    color: #8be9fd; /* A syntax-highlighting-like color for inline code */
+}
+
+.lesson-output .markdown-content pre {
+    background-color: var(--code-bg);
+    padding: 25px;
+    border-radius: 12px;
+    overflow-x: auto;
+    margin-bottom: 1.8em;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.3); /* Inner shadow for code blocks */
+}
+
+.lesson-output .markdown-content pre code {
+    display: block;
+    background-color: transparent;
+    padding: 0;
+    font-size: 1em;
+    color: var(--code-text);
+}
+
+.feedback-section {
+  margin-top: 40px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 25px; /* More space between buttons */
+}
+
+.feedback-section button {
+  margin-top: 0;
+  padding: 14px 30px;
+  font-size: 1.15em;
+  background: linear-gradient(45deg, var(--feedback-button-bg) 0%, #39c05e 100%); /* Green gradient for feedback */
+  border: 1px solid var(--feedback-button-bg);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  color: white; /* Ensure text is white for feedback buttons too */
+}
+
+.feedback-section button:hover:not(:disabled) {
+  background: linear-gradient(45deg, #39c05e 0%, var(--feedback-button-hover-bg) 100%);
+  border-color: var(--feedback-button-hover-bg);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
 }
